@@ -2,6 +2,7 @@
   "name": "reactts-borough",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://chicagozer.github.io/reactts-borough",
   "dependencies": {
     "@types/jest": "^20.0.8",
     "@types/node": "^8.0.28",
@@ -10,6 +11,7 @@
     "@types/react-redux": "^5.0.7",
     "@types/redux-logger": "^3.0.3",
     "@types/socket.io-client": "^1.4.30",
+    "gh-pages": "^1.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
@@ -20,7 +22,9 @@
     "socket.io-client": "^2.0.3"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "REACT_APP_VERSION=$npm_package_version react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"

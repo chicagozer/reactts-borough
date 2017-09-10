@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Borough } from './borough';
-//import * as Config  from 'config';
+// import * as Config  from 'config';
 
-// TODO var Config = JSON.stringify(require('../package.json'))
-//var Config = require('config');
+
 interface BoroughsProps {
     boroughs: Borough[];
 }
@@ -19,7 +18,9 @@ class Boroughs extends React.Component< BoroughsProps, {} > {
 
         return (
             <div>
-                <div className="page-header"/>
+                <div className="page-header">
+                    <h1>React Borough List<small>[{process.env.REACT_APP_VERSION}]</small></h1>
+                </div>
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -40,8 +41,8 @@ class Boroughs extends React.Component< BoroughsProps, {} > {
 
                     </tbody>
                 </table>
-            </div>)
+            </div>);
     }
 }
 
-export default Boroughs
+export default Boroughs;

@@ -24,7 +24,6 @@ class App extends React.Component<AppProps, {}> {
     }
 
     componentDidMount() {
-        console.dir(this.props);
         this.props.dispatch(fetchBoroughs(this.rtdb));
 
     }
