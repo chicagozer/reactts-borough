@@ -8,12 +8,17 @@ import thunk from 'redux-thunk';
 
 // this is a bit hacky - not sure how to cast (<any>window) without JSX getting upset
 
+declare global {
+    interface Window { __REDUX_DEVTOOLS_EXTENSION__: any; }
+}
+
+
 const middleware = [thunk];
 
 const store = createStore(
     reduceBoroughs,
     compose(applyMiddleware(...middleware),
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));
 
 ReactDOM.render(

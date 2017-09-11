@@ -1,6 +1,10 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable, Observer } from 'rxjs/Rx';
 import * as io from 'socket.io-client';
 import { Borough } from '../components/borough';
+
+export class BoroughPayload {
+
+}
 
 export class RtdbService {
 
@@ -20,16 +24,24 @@ export class RtdbService {
 
         });
 
+        /*
         this.boroughs = new Observable<Borough[]>((observer: any) => {
 
             this.socket.on('90e40254-d57c-4ce5-88b5-20034c9511ec',
-                (data: any) => {
-                    observer.next(data.map((i: any) => new Borough(i[0], i[1].fvTotal, i[1].count)));
+                           (data: any) => {
+                    observer.next(data.map((i: {}) => new Borough(i[0], i[1].fvTotal, i[1].count)));
                 });
 
             return () => {
                 this.socket.disconnect();
             };
+        });*/
+
+        this.boroughs = Observable.create((observer: Observer<Borough[]>) => {
+            this.socket.on('90e40254-d57c-4ce5-88b5-20034c9511ec',
+                           (data: any) => {
+                observer.next(data.map((i: {}) => new Borough(i[0], i[1].fvTotal, i[1].count)));
+            });
         });
 
     }
