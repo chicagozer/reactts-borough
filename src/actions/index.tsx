@@ -3,12 +3,10 @@ import { Borough } from '../components/borough';
 
 export const RECEIVE_BOROUGHS = 'RECEIVE_BOROUGHS';
 
-
 export interface Action {
-    type: string,
-    boroughs: Borough[]
+    type: string;
+    boroughs: Borough[];
 }
-
 
 function receiveBoroughs(boroughs: Borough[]): Action {
     return {
@@ -17,12 +15,9 @@ function receiveBoroughs(boroughs: Borough[]): Action {
     };
 }
 
-
-export function fetchBoroughs(rtdb : RtdbService): Function {
+export function fetchBoroughs(rtdb: RtdbService): Function {
 
     return (dispatch: Function) => {
-        rtdb.getBoroughs().subscribe( (boroughs:Borough[]) => dispatch(receiveBoroughs(boroughs) ));
-    }
+        rtdb.getBoroughs().subscribe( (boroughs: Borough[]) => dispatch(receiveBoroughs(boroughs) ));
+    };
 }
-
-

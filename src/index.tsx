@@ -1,15 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore , applyMiddleware, compose} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import reduceBoroughs from './reducers';
 import App from './App';
 import thunk from 'redux-thunk';
 
 // this is a bit hacky - not sure how to cast (<any>window) without JSX getting upset
 
-const middleware = [thunk]
-
+const middleware = [thunk];
 
 const store = createStore(
     reduceBoroughs,

@@ -45,11 +45,10 @@ function mapStateToProps(state: RootState): AppProps {
     };
 }
 
-
 function mapDispatchToProps(dispatch: Dispatch<RootState>) {
     return({
         dispatch: dispatch
     });
 }
 
-export default connect<any,any,void>(mapStateToProps, mapDispatchToProps)(App);
+export default connect<any, any, void>(mapStateToProps, mapDispatchToProps)(App);
