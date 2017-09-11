@@ -2,8 +2,10 @@ import { Observable, Observer } from 'rxjs/Rx';
 import * as io from 'socket.io-client';
 import { Borough } from '../components/borough';
 
-export class BoroughPayload {
-
+class BoroughPayload {
+    fvLand: number;
+    fvTotal: number;
+    count: number;
 }
 
 export class RtdbService {
@@ -39,7 +41,7 @@ export class RtdbService {
 
         this.boroughs = Observable.create((observer: Observer<Borough[]>) => {
             this.socket.on('90e40254-d57c-4ce5-88b5-20034c9511ec',
-                           (data: any) => {
+                           (data: [[string, BoroughPayload]]) => {
                 observer.next(data.map((i: {}) => new Borough(i[0], i[1].fvTotal, i[1].count)));
             });
         });

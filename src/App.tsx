@@ -8,7 +8,7 @@ import { RtdbService } from './rtdb/rtdb.service';
 import { Dispatch } from 'redux';
 
 interface AppProps {
-    boroughs: Borough[];
+    boroughs?: Borough[];
     dispatch?: Function;
 }
 
@@ -18,19 +18,16 @@ class App extends React.Component<AppProps, {}> {
 
     constructor(props: AppProps) {
         super(props);
-
         this.rtdb = new  RtdbService();
 
     }
 
     componentDidMount() {
         this.props.dispatch(fetchBoroughs(this.rtdb));
-
     }
 
     render() {
-
-        return (
+     return (
             <div>
                 <Boroughs boroughs={this.props.boroughs}/>
             </div>
@@ -51,4 +48,4 @@ function mapDispatchToProps(dispatch: Dispatch<RootState>) {
     });
 }
 
-export default connect<any, any, void>(mapStateToProps, mapDispatchToProps)(App);
+export default connect<AppProps, AppProps, void>(mapStateToProps, mapDispatchToProps)(App);
